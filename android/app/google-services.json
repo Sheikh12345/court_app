@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "254099220078",
+    "project_id": "court-e7cca",
+    "storage_bucket": "court-e7cca.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254099220078:android:2904c104a0b7070651e87f",
+        "android_client_info": {
+          "package_name": "com.example.court_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254099220078-i2v72nai1j31geop8o8jo757sc3a3cuo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVB2-DcVc_Xga14G2wKZfTw20y6E3p7lo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254099220078-i2v72nai1j31geop8o8jo757sc3a3cuo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
