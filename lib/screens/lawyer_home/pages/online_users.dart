@@ -9,7 +9,9 @@ User loggedInUser;
 
 class OnlineUsersScreen extends StatefulWidget {
   static const String routeName = 'online_users_screen';
+  final String topHeading;
 
+  const OnlineUsersScreen({Key key, this.topHeading}) : super(key: key);
   @override
   _OnlineUsersScreenState createState() => _OnlineUsersScreenState();
 }
@@ -22,7 +24,6 @@ class _OnlineUsersScreenState extends State<OnlineUsersScreen> {
 
   @override
   void initState() {
-
     super.initState();
 
     getCurrentUser();
@@ -34,41 +35,30 @@ class _OnlineUsersScreenState extends State<OnlineUsersScreen> {
       final user = await _auth.currentUser;
       if (user != null) {
         loggedInUser = user;
-       // print(loggedInUser.email);
-      //  print(loggedInUser.uid);
-       // print(loggedInUser.displayName);
-       // print(loggedInUser.metadata.toString());
       }
     } catch (e) {
       print(e);
     }
   }
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: null,
-        actions: <Widget>[
-          // IconButton(
-          //   icon: Icon(Icons.close),
-          //   onPressed: () {
-          //     //Implement logout functionality
-          //     // try{
-          //     //messageStream();
-          //     // _auth.signOut();
-          //     // Navigator.pushNamed(context, WelcomeScreen.id);
-          //
-          //     // } catch(e){
-          //     //   print(e);
-          //     // }
-          //     // getMessages();
-          //   },
-          // ),
-        ],
-        title: Text('⚡️ Notifications', style:TextStyle(color:Colors.white),),
+        title: Text(
+          '⚡️ ${widget.topHeading}',
+          style: TextStyle(color: Colors.white),
+        ),
         backgroundColor: Colors.redAccent,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.admin_panel_settings,
+                color: Colors.white,
+              ))
+        ],
       ),
       body: SafeArea(
         child: Column(
@@ -76,7 +66,6 @@ class _OnlineUsersScreenState extends State<OnlineUsersScreen> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             MessageStream(),
-
           ],
         ),
       ),
@@ -85,17 +74,20 @@ class _OnlineUsersScreenState extends State<OnlineUsersScreen> {
 }
 
 Stream<dynamic> dataFun() {
-
-   var myData  =  _fireStore.collection('notifications').doc(FirebaseAuth.instance.currentUser.email).collection('notifications').snapshots();
-return myData;
+  var myData = _fireStore
+      .collection('notifications')
+      .doc(FirebaseAuth.instance.currentUser.email)
+      .collection('notifications')
+      .snapshots();
+  return myData;
 }
+
 class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream:dataFun(),
+        stream: dataFun(),
         builder: (context, snapshot) {
-
           if (!snapshot.hasData) {
             return Center(
               child: CircularProgressIndicator(
@@ -121,16 +113,16 @@ class MessageStream extends StatelessWidget {
 //TODO: change these data()
             //final messageSender = message.data()['sender'];
 
-           DateTime dateTime =  message.get('date').toDate();
-             final messageDate = DateFormat.yMEd().add_jms().format(dateTime).toString();
+            DateTime dateTime = message.get('date').toDate();
+            final messageDate =
+                DateFormat.yMEd().add_jms().format(dateTime).toString();
             final currentUser = loggedInUser.email;
             // ignore: unused_local_variable
             final currentUserUid = loggedInUser.uid;
             // ignore: unused_local_variable
             final currentUserPic = loggedInUser.photoURL;
             if (currentUser == messageEmail) {
-              // The message from logged in User
-
+              // The message from logged in Use
             }
 
             final messageBubble = MessageBubble(
@@ -140,9 +132,10 @@ class MessageStream extends StatelessWidget {
             );
             messageBubbles.add(messageBubble);
           }
+
           return Expanded(
             child: ListView(
-             // reverse: true,
+              // reverse: true,
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               children: messageBubbles,
             ),
@@ -165,12 +158,12 @@ class MessageBubble extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: InkWell(
-        onTap: (){
+        onTap: () {
           //print(" its from navigation button ${sender}");
-           // ignore: unnecessary_statements
-         Navigator.pushNamed(context, ChatScreen.id, arguments:sender);
+          // ignore: unnecessary_statements
+          Navigator.pushNamed(context, ChatScreen.id, arguments: sender);
         },
-              child: Column(
+        child: Column(
           crossAxisAlignment:
               isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
           children: [
@@ -221,7 +214,6 @@ class MessageBubble extends StatelessWidget {
                       //       isMe ? Colors.lightBlueAccent : Colors.redAccent,
                       //   child: Text(sender.substring(0, 1).toUpperCase()),
                       // ),
-
                     ]
                   : [
                       // CircleAvatar(
@@ -249,7 +241,7 @@ class MessageBubble extends StatelessWidget {
                             horizontal: 20.0,
                           ),
                           child: Text(
-                           '$text',
+                            '$text',
                             style: TextStyle(
                               fontSize: 10.0,
                               color: Colors.white,

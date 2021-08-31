@@ -3,16 +3,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:court_app/utils/constants.dart';
 
-class DriverProfilePic extends StatefulWidget {
-  const DriverProfilePic({
+class LawyerProfilePic extends StatefulWidget {
+  const LawyerProfilePic({
     Key key,
   }) : super(key: key);
 
   @override
-  _DriverProfilePicState createState() => _DriverProfilePicState();
+  _LawyerProfilePicState createState() => _LawyerProfilePicState();
 }
 
-class _DriverProfilePicState extends State<DriverProfilePic> {
+class _LawyerProfilePicState extends State<LawyerProfilePic> {
 
   User user = FirebaseAuth.instance.currentUser;
 

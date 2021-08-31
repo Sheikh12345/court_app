@@ -58,21 +58,6 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         leading: null,
         actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              //Implement logout functionality
-              // try{
-              //messageStream();
-              // _auth.signOut();
-              // Navigator.pushNamed(context, WelcomeScreen.id);
-
-              // } catch(e){
-              //   print(e);
-              // }
-              // getMessages();
-            },
-          ),
         ],
         title: Text('⚡️Chat', style:TextStyle(color:Colors.white)),
         backgroundColor: kPrimaryColor,
@@ -105,7 +90,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       messageTextController.clear();
                       _firestore.collection('messages')
                       //sender
-                      .doc(loggedInUser.email)
+                      .doc(FirebaseAuth.instance.currentUser.email)
                      // receiver
                       .collection(receiverEmail).add(
                         {
@@ -171,7 +156,7 @@ class MessageStream extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
         stream: _firestore.collection('messages')
         .doc(loggedInUser.email)
-        .collection(receiver).orderBy('date', descending: true).snapshots(),
+        .collection(receiver).orderBy('date', descending: false).snapshots(),
 
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -208,7 +193,7 @@ class MessageStream extends StatelessWidget {
           return Expanded(
             child: ListView(
               shrinkWrap: true,
-             
+
               reverse: true,
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               children: messageBubbles,

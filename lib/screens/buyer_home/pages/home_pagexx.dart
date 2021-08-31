@@ -297,6 +297,21 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(color: Colors.black),
                       children: <TextSpan>[
                         TextSpan(
+                          text: 'License: ',
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                        ),
+                        TextSpan(text: '${jsnapshot['license']}'),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(bottom: 10),
+                  child: RichText(
+                    text: TextSpan(
+                      style: TextStyle(color: Colors.black),
+                      children: <TextSpan>[
+                        TextSpan(
                           text: 'Court Type: ',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -365,7 +380,7 @@ class _HomePageState extends State<HomePage> {
                                 }
                                 Navigator.pop(context);
                               },
-                              child: Text("Book", style: txtlight),
+                              child: Text("Book", style: txtLight),
                             );
                           }),
                       Padding(
@@ -383,7 +398,7 @@ class _HomePageState extends State<HomePage> {
                          Navigator.pushNamed(context, ChatScreen.routeName, arguments:jsnapshot['Email']);
                         },
                         color: kPrimaryColor,
-                        child: Text('Chat', style: txtlight),
+                        child: Text('Chat', style: txtLight),
                       ),
                        Padding(
                         padding: EdgeInsets.symmetric(horizontal: 5),
@@ -393,7 +408,7 @@ class _HomePageState extends State<HomePage> {
                           customLaunch('tel:${jsnapshot['PhoneNo']}');
                         },
                         color: kPrimaryColor,
-                        child: Text('Call', style: txtlight),
+                        child: Text('Call', style: txtLight),
                       ),
                     ],
                   ),

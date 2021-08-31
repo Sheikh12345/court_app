@@ -1,11 +1,11 @@
 import 'package:court_app/screens/sign%20in%20as/sign_in_as_screen.dart';
 import 'package:flutter/widgets.dart';
 import '../models/verify_email.dart';
-import '../screens/seller_home/pages/home_page.dart';
-import '../screens/seller_home/pages/online_users.dart';
-import '../screens/seller_home/pages/user_profile/user_profile.dart';
+import '../screens/lawyer_home/pages/home_page.dart';
+import '../screens/lawyer_home/pages/online_users.dart';
+import '../screens/lawyer_home/pages/user_profile/user_profile.dart';
 import '../screens/complete_profile/vcomplete_profile_screen.dart';
-import '../screens/seller_home/b_bottom_navigation.dart';
+import '../screens/lawyer_home/b_bottom_navigation.dart';
 import '../screens/edit_profiles/b_edit_profile.dart';
 import '../screens/edit_profiles/vendor_edit_profile.dart';
 import '../screens/forgot_password/forgot_password_screen.dart';
@@ -38,13 +38,15 @@ final Map<String, WidgetBuilder> routes = {
   RegistrationSuccessScreen.routeName: (context) => RegistrationSuccessScreen(),
   SellerBottomNavigation.routeName: (context) => SellerBottomNavigation(),
   Verifications.routeName: (context) => Verifications(),
-  SellerEditProfile.routeName: (context) => SellerEditProfile(),
+  LawyerEditProfile.routeName: (context) => LawyerEditProfile(),
   ParentEditProfile.routeName: (context) => ParentEditProfile(),
   SellerHomePage.routeName: (context) => SellerHomePage(),
   AppUserPage.routeName: (context) => AppUserPage(),
   AboutUs.routeName: (context) => AboutUs(),
   ChatScreen.routeName: (context) => ChatScreen(),
-  OnlineUsersScreen.routeName: (context) => OnlineUsersScreen(),
+  OnlineUsersScreen.routeName: (context) => OnlineUsersScreen(
+    topHeading: 'Notification',
+  ),
   AdminBottomNavigation.routeName: (context) => AdminBottomNavigation(),
   BlockedBottomNavigation.routeName: (context) => BlockedBottomNavigation(),
   DeletedBottomNavigation.routeName: (context) => DeletedBottomNavigation(),

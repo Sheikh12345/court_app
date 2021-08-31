@@ -175,9 +175,9 @@ class MessageStream extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
         stream: _firestore
             .collection('messages')
-            .doc(loggedInUser.email)
+            .doc(FirebaseAuth.instance.currentUser.email)
             .collection(receiver)
-            .orderBy('date', descending: true)
+            .orderBy('date', descending: false)
             .snapshots(),
         builder: (context, snapshot) {
           if (!snapshot.hasData) {

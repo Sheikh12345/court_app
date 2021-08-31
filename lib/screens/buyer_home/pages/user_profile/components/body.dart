@@ -1,9 +1,9 @@
+import 'package:court_app/screens/sign_in/sign_in_screen.dart';
+import 'package:court_app/widgets/snack_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../../../screens/edit_profiles/vendor_edit_profile.dart';
 import '../../../../../screens/buyer_home/pages/user_profile/components/profile_menu.dart';
-import '../../../../../screens/sign_in/sign_in_screen.dart';
-import '../../../../../widgets/snack_bar.dart';
 import '../../../../../screens/buyer_home/pages/aboutUs.dart';
 
 class Body extends StatefulWidget {

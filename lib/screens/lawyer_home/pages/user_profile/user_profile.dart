@@ -19,7 +19,7 @@ class AppUserPage extends StatelessWidget {
         brightness: Brightness.light,
         backgroundColor: Colors.white,
       ),
-      body: DriverBody(),
+      body: LawyerBody(),
     );
   }
 }

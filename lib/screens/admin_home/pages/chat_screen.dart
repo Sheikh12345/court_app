@@ -171,8 +171,8 @@ class MessageStream extends StatelessWidget {
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
         stream: _firestore.collection('messages')
-        .doc(loggedInUser.email)
-        .collection(receiver).orderBy('date', descending: true).snapshots(),
+        .doc(FirebaseAuth.instance.currentUser.email)
+        .collection(receiver).orderBy('date', descending: false).snapshots(),
 
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
@@ -211,7 +211,7 @@ class MessageStream extends StatelessWidget {
           return Expanded(
             child: ListView(
               shrinkWrap: true,
-             
+
               reverse: true,
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               children: messageBubbles,

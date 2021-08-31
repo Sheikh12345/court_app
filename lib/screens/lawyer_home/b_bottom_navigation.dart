@@ -1,8 +1,10 @@
+import 'package:court_app/screens/lawyer_home/pages/home_page.dart';
+import 'package:court_app/screens/lawyer_home/pages/online_users.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:court_app/utils/constants.dart';
-import '../../screens/seller_home/pages/home_page.dart';
-import '../../screens/seller_home/pages/user_profile/user_profile.dart';
+import '../../screens/lawyer_home/pages/home_page.dart';
+import '../../screens/lawyer_home/pages/user_profile/user_profile.dart';
 
 class SellerBottomNavigation extends StatefulWidget {
   static String routeName = '/driver_navigation';
@@ -29,8 +31,10 @@ class _SellerBottomNavigationState extends State<SellerBottomNavigation> {
   final List<Widget> _children = [
     // AddHostel(),
     SellerHomePage(),
-    AppUserPage(),
-
+    OnlineUsersScreen(
+      topHeading: "Inbox",
+    ),
+    AppUserPage()
   ];
 
   void onTabTapped(int index) {
@@ -71,7 +75,11 @@ class _SellerBottomNavigationState extends State<SellerBottomNavigation> {
           BottomNavigationBarItem(
             icon: Icon(Icons.home,size: 40, color: kPrimaryColor,), label: 'Home',),
           BottomNavigationBarItem(
+              icon: Icon(Icons.message,size: 40, color: kPrimaryColor,), label: 'Profile'),
+
+          BottomNavigationBarItem(
               icon: Icon(Icons.person_rounded,size: 40, color: kPrimaryColor,), label: 'Profile'),
+
         ],
         selectedLabelStyle: const TextStyle(fontSize: 14,),
         unselectedLabelStyle: const TextStyle(fontSize: 10,),

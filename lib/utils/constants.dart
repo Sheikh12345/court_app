@@ -7,7 +7,7 @@ const kPrimaryLightColor = Color(0xFFFFECDF);
 const kPrimaryColor = Color(0xffff0000); //8b0000
 // const kPrimaryLightColor = Color(0xffEE1B1B);
 
-const txtlight = TextStyle(color: kPrimaryLightColor);
+const txtLight = TextStyle(color: kPrimaryLightColor);
 const hexColor = Color(0xFFf5f4f4);
 const kPrimaryGradientColor = LinearGradient(
   begin: Alignment.topLeft,
@@ -102,3 +102,25 @@ const kTextFieldDecoration = InputDecoration(
     borderRadius: BorderRadius.all(Radius.circular(32.0)),
   ),
 );
+
+const List<String> specificFieldList = [
+  'Bankruptcy',
+  'Business',
+  'Civil Rights',
+  'Criminal',
+  'Tax & customers',
+  'Entertainment',
+  'Environmental',
+  'Family',
+  'Immigration',
+  'Real estate'
+];
+
+const List<String> courtTypeList = [
+  'Supreme court',
+  'High court',
+  'Federal Shariat court',
+  'District judiciary',
+  'Subordinate court',
+  'Special court'
+];

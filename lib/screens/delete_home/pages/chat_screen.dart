@@ -175,7 +175,7 @@ class MessageStream extends StatelessWidget {
     return StreamBuilder<QuerySnapshot>(
         stream: _firestore
             .collection('messages')
-            .doc(loggedInUser.email)
+            .doc(FirebaseAuth.instance.currentUser.email)
             .collection(receiver)
             .orderBy('date', descending: false)
             .snapshots(),
@@ -215,7 +215,7 @@ class MessageStream extends StatelessWidget {
           return Expanded(
             child: ListView(
               shrinkWrap: false,
-              reverse: true,
+              reverse: false,
               padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 20.0),
               children: messageBubbles,
             ),
@@ -279,6 +279,9 @@ class MessageBubble extends StatelessWidget {
                           ),
                         ),
                       ),
+                    ),
+                    SizedBox(
+                      width: 1,
                     ),
                     CircleAvatar(
                       backgroundColor: isMe ? Colors.grey : Colors.redAccent,

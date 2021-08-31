@@ -6,7 +6,7 @@ import 'package:court_app/utils/size_config.dart';
 import 'package:flutter/material.dart';
 import '../../../components/custom_surfix_icon.dart';
 import '../../../components/form_error.dart';
-import '../../../screens/seller_home/b_bottom_navigation.dart';
+import '../../../screens/lawyer_home/b_bottom_navigation.dart';
 import '../../../screens/forgot_password/forgot_password_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../screens/buyer_home/v_bottom_navigation.dart';

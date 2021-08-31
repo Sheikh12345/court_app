@@ -1,18 +1,18 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../../../../../screens/seller_home/pages/user_profile/components/profile_menu.dart';
-import '../../../../../screens/seller_home/pages/user_profile/components/profile_pic.dart';
+import '../../../../../screens/lawyer_home/pages/user_profile/components/profile_menu.dart';
+import '../../../../../screens/lawyer_home/pages/user_profile/components/profile_pic.dart';
 import '../../../../../screens/edit_profiles/b_edit_profile.dart';
 import '../../../../../screens/sign_in/sign_in_screen.dart';
 import 'aboutUs.dart';
 import '../../../../../widgets/snack_bar.dart';
 
-class DriverBody extends StatefulWidget {
+class LawyerBody extends StatefulWidget {
   @override
-  _DriverBodyState createState() => _DriverBodyState();
+  _LawyerBodyState createState() => _LawyerBodyState();
 }
 
-class _DriverBodyState extends State<DriverBody> {
+class _LawyerBodyState extends State<LawyerBody> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -22,15 +22,15 @@ class _DriverBodyState extends State<DriverBody> {
             SizedBox(
               height: 10,
             ),
-            DriverProfilePic(),
+            LawyerProfilePic(),
             SizedBox(
               height: 10,
             ),
-            DriverProfileMenu(
+            LawyerProfileMenu(
               icon: 'assets/icons/User Icon.svg',
               text: 'Edit Profile',
               press: () {
-                Navigator.pushNamed(context, SellerEditProfile.routeName);
+                Navigator.pushNamed(context, LawyerEditProfile.routeName);
               },
             ),
             // DriverProfileMenu(
@@ -38,7 +38,7 @@ class _DriverBodyState extends State<DriverBody> {
             //   text: 'Settings',
             //   press: () {},
             // ),
-            DriverProfileMenu(
+            LawyerProfileMenu(
               icon: 'assets/icons/Question mark.svg',
               text: 'Help Center',
               press: () {
@@ -46,7 +46,7 @@ class _DriverBodyState extends State<DriverBody> {
                     .push(MaterialPageRoute(builder: (context) => AboutUs()));
               },
             ),
-            DriverProfileMenu(
+            LawyerProfileMenu(
               icon: 'assets/icons/Log out.svg',
               text: 'Log Out',
               press: () async {

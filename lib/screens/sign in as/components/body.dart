@@ -12,6 +12,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   int _value = 1;
   int lawyer = 1;
+  int admin = 2;
   int customer = 3;
 
   @override
@@ -34,6 +35,22 @@ class _BodyState extends State<Body> {
                   ),
                   leading: Radio(
                     value: lawyer,
+                    groupValue: _value,
+                    activeColor: Color(0xFF6200EE),
+                    onChanged: (int value) {
+                      setState(() {
+                        print(value);
+                        _value = value;
+                      });
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: Text(
+                    'Admin',
+                  ),
+                  leading: Radio(
+                    value: admin,
                     groupValue: _value,
                     activeColor: Color(0xFF6200EE),
                     onChanged: (int value) {

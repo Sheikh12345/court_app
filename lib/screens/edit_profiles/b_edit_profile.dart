@@ -10,24 +10,32 @@ import 'package:court_app/utils/constants.dart';
 import '../../widgets/loading_alert_dailog.dart';
 import '../../widgets/snack_bar.dart';
 
-class SellerEditProfile extends StatefulWidget {
+class LawyerEditProfile extends StatefulWidget {
   static String routeName = "/driver_edit_profile";
 
   @override
-  _SellerEditProfileState createState() => _SellerEditProfileState();
+  _LawyerEditProfileState createState() => _LawyerEditProfileState();
 }
 
-class _SellerEditProfileState extends State<SellerEditProfile> {
+class _LawyerEditProfileState extends State<LawyerEditProfile> {
   final _formKey = GlobalKey<FormState>();
   final List<String> errors = [];
 
+  int isCourtType = 0;
+  int isSpecificField = 0;
+
   String storeName;
+  String dropdownResultSpecificField = '';
+  String dropdownResultCourtType = '';
   String storeCnic;
   String storeAddress;
   String storePhoneNo;
   String storeBarCouncil;
   String storeCourtType;
   String storeSpecialization;
+  String storeBarMembership;
+  String storeHighCourtMembership;
+  String storeLicense;
 
   String name;
   String cnic;
@@ -36,6 +44,9 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
   String barCouncil;
   String courtType;
   String specialization;
+  String barMembership;
+  String highCourtMembership;
+  String license;
 
   void addError({String error}) {
     if (!errors.contains(error))
@@ -72,7 +83,9 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
               .snapshots(),
           builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
             if (snapshot.data == null)
-              return SpinKitCircle(color: kPrimaryColor,);
+              return SpinKitCircle(
+                color: kPrimaryColor,
+              );
             storeName = snapshot.data['Name'];
             storeCnic = snapshot.data['CNIC'];
             storePhoneNo = snapshot.data['PhoneNo'];
@@ -80,6 +93,10 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
             storeBarCouncil = snapshot.data['BarCouncil'];
             storeCourtType = snapshot.data['CourtType'];
             storeSpecialization = snapshot.data['Specialization'];
+            storeBarMembership = snapshot.data['barMembership'];
+            storeHighCourtMembership = snapshot.data['highCourtMembership'];
+            storeLicense = snapshot.data['license'];
+
             return SizedBox(
               width: double.infinity,
               child: Padding(
@@ -107,6 +124,12 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
                           SizedBox(height: getProportionateScreenHeight(30)),
                           courtTypeFormField(),
                           SizedBox(height: getProportionateScreenHeight(30)),
+                          buildDistrictBarMembershipFormField(),
+                          SizedBox(height: getProportionateScreenHeight(30)),
+                          buildHighCourtBarMembershipFormField(),
+                          SizedBox(height: getProportionateScreenHeight(30)),
+                          buildLicenseFormField(),
+                          SizedBox(height: getProportionateScreenHeight(30)),
                           specializationFormField(),
                           SizedBox(height: getProportionateScreenHeight(30)),
                           buildAddressFormField(),
@@ -130,17 +153,26 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
                                   cnic = storeCnic;
                                 }
                                 if (barCouncil == null) {
-                                  barCouncil =
-                                      storeBarCouncil;
+                                  barCouncil = storeBarCouncil;
                                 }
                                 if (courtType == null) {
-                                  courtType =
-                                      storeCourtType;
+                                  courtType = storeCourtType;
                                 }
                                 if (specialization == null) {
-                                  specialization =
-                                      storeSpecialization;
+                                  specialization = storeSpecialization;
                                 }
+                                if (barMembership == null) {
+                                  barMembership = storeBarMembership;
+                                }
+                                if (highCourtMembership == null) {
+                                  highCourtMembership =
+                                      storeHighCourtMembership;
+                                }
+
+                                if (license == null) {
+                                  license = storeLicense;
+                                }
+
                                 showLoadingDialog(context);
                                 try {
                                   await FirebaseFirestore.instance
@@ -154,11 +186,16 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
                                     'PhoneNo': phoneNo,
                                     'Specialization': specialization,
                                     'BarCouncil': barCouncil,
-                                    'CourtType': courtType,
+                                    'CourtType': dropdownResultCourtType,
+                                    'barMembership': barMembership,
+                                    'highCourtMembership':
+                                        dropdownResultSpecificField,
+                                    'license': license
                                   }).then((value) => {
-                                    Navigator.pop(context),
-                                    Snack_Bar.show(context, "Profile Updated Successfully!")
-                                  });
+                                            Navigator.pop(context),
+                                            Snack_Bar.show(context,
+                                                "Profile Updated Successfully!")
+                                          });
                                 } catch (e) {
                                   print(e);
                                 }
@@ -231,61 +268,82 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
         labelText: "Bar Council",
         hintText: "Enter your Bar Council",
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/driving-license.svg"),
+        suffixIcon:
+            CustomSuffixIcon(svgIcon: "assets/icons/driving-license.svg"),
       ),
     );
   }
 
-  TextFormField courtTypeFormField() {
-    return TextFormField(
-      initialValue: storeCourtType,
-      keyboardType: TextInputType.name,
-      onSaved: (newValue) => courtType = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kNumberPlateError);
-        }
-        courtType = value;
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kNumberPlateError);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "CourtType",
-        hintText: "Enter your CourtType",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/license-plate.svg"),
+  courtTypeFormField() {
+    if (isCourtType != 1) {
+      setState(() {
+        dropdownResultCourtType = storeCourtType;
+        isCourtType = 1;
+      });
+    }
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.grey, width: 1)),
+      child: DropdownButton<String>(
+        underline: Container(),
+        isExpanded: true,
+        hint: Text(dropdownResultCourtType ?? 'Court type'),
+        items: courtTypeList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: new Text(
+              value,
+              style: TextStyle(color: Colors.black),
+            ),
+          );
+        }).toList(),
+        onChanged: (value) {
+          setState(() {
+            dropdownResultCourtType = value;
+          });
+        },
       ),
     );
   }
 
-  TextFormField specializationFormField() {
-    return TextFormField(
-      initialValue: storeSpecialization,
-      keyboardType: TextInputType.name,
-      onSaved: (newValue) => specialization = newValue,
-      onChanged: (value) {
-        if (value.isNotEmpty) {
-          removeError(error: kRegistrationError);
-        }
-        specialization = value;
-      },
-      validator: (value) {
-        if (value.isEmpty) {
-          addError(error: kRegistrationError);
-          return "";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        labelText: "Specialization",
-        hintText: "Enter your Specialization",
-        floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/van.svg"),
+  specializationFormField() {
+    if (isSpecificField != 1) {
+      setState(() {
+        dropdownResultSpecificField = storeSpecialization;
+        isSpecificField = 1;
+      });
+    }
+    return Container(
+      alignment: Alignment.center,
+      padding: EdgeInsets.symmetric(horizontal: 20),
+      width: MediaQuery.of(context).size.width,
+      height: 60,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(color: Colors.grey, width: 1)),
+      child: DropdownButton<String>(
+        underline: Container(),
+        isExpanded: true,
+        hint: dropdownResultSpecificField != null
+            ? Text(dropdownResultSpecificField)
+            : Text('Specific field'),
+        items: specificFieldList.map((String value) {
+          return DropdownMenuItem<String>(
+            value: value,
+            child: new Text(value),
+          );
+        }).toList(),
+        onChanged: (value) {
+          print(value.toString());
+          setState(() {
+            dropdownResultSpecificField = value;
+          });
+        },
       ),
     );
   }
@@ -367,6 +425,86 @@ class _SellerEditProfileState extends State<SellerEditProfile> {
         floatingLabelBehavior: FloatingLabelBehavior.always,
         suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
       ),
+    );
+  }
+
+  TextFormField buildDistrictBarMembershipFormField() {
+    return TextFormField(
+      initialValue: storeBarMembership,
+      keyboardType: TextInputType.name,
+      onSaved: (newValue) => barMembership = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kNamelNullError);
+          barMembership = value;
+        }
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kNamelNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "District bar membership",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildHighCourtBarMembershipFormField() {
+    return TextFormField(
+      initialValue: storeHighCourtMembership,
+      keyboardType: TextInputType.name,
+      onSaved: (newValue) => highCourtMembership = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kNamelNullError);
+          highCourtMembership = value;
+        }
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kNamelNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+        labelText: "High court bar membership",
+        floatingLabelBehavior: FloatingLabelBehavior.always,
+        suffixIcon: CustomSuffixIcon(svgIcon: "assets/icons/User.svg"),
+      ),
+    );
+  }
+
+  TextFormField buildLicenseFormField() {
+    return TextFormField(
+      initialValue: storeLicense,
+      keyboardType: TextInputType.name,
+      onSaved: (newValue) => license = newValue,
+      onChanged: (value) {
+        if (value.isNotEmpty) {
+          removeError(error: kNamelNullError);
+          license = value;
+        }
+      },
+      validator: (value) {
+        if (value.isEmpty) {
+          addError(error: kNamelNullError);
+          return "";
+        }
+        return null;
+      },
+      decoration: InputDecoration(
+          labelText: "License",
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          suffixIcon: Container(
+            child: Icon(Icons.confirmation_number_outlined),
+            margin: EdgeInsets.only(right: 14),
+          )),
     );
   }
 }

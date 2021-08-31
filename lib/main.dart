@@ -5,7 +5,7 @@ import 'screens/splash/splash_screen.dart';
 import 'methods/firebase_methods.dart';
 import 'utils/theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'screens/seller_home/b_bottom_navigation.dart';
+import 'screens/lawyer_home/b_bottom_navigation.dart';
 import 'utils/routes.dart';
 import 'screens/admin_home/v_bottom_navigation.dart';
 import 'screens/block_home/v_bottom_navigation.dart';

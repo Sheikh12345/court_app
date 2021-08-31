@@ -3,8 +3,8 @@ import 'package:flutter_svg/svg.dart';
 
 import 'package:court_app/utils/constants.dart';
 
-class DriverProfileMenu extends StatelessWidget {
-  const DriverProfileMenu({
+class LawyerProfileMenu extends StatelessWidget {
+  const LawyerProfileMenu({
     Key key,
     @required this.text,
     @required this.icon,

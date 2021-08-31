@@ -16,7 +16,7 @@ class _AboutUsState extends State<AboutUs> {
   final List<String> errors = [];
 
   String storeName;
-  String storeCnic;
+  String storeCNIC;
   String storeAddress;
   String storePhoneNo;
 
@@ -55,7 +55,7 @@ class _AboutUsState extends State<AboutUs> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal:18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -114,9 +114,7 @@ class _AboutUsState extends State<AboutUs> {
                             fontWeight: FontWeight.w900),
                       ),
                       ListTile(
-                        leading: Icon(
-                         Entypo.facebook
-                        ),
+                        leading: Icon(Entypo.facebook),
                         title: Text(
                           "https://fb.com/ecase",
                           style: TextStyle(
@@ -136,14 +134,11 @@ class _AboutUsState extends State<AboutUs> {
                           ),
                         ),
                       ),
-
-                      
                     ],
                   ),
                 ),
               ),
-
-            Card(
+              Card(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -157,9 +152,7 @@ class _AboutUsState extends State<AboutUs> {
                             fontWeight: FontWeight.w900),
                       ),
                       ListTile(
-                        leading: Icon(
-                        Octicons.versions
-                        ),
+                        leading: Icon(Octicons.versions),
                         title: Text(
                           "V 1.00",
                           style: TextStyle(
@@ -167,16 +160,31 @@ class _AboutUsState extends State<AboutUs> {
                           ),
                         ),
                       ),
-                    
-
-                      
                     ],
                   ),
                 ),
               ),
-
-            ] 
-      
-    ))));
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Contact to admin",
+                        style: TextStyle(
+                            color: Color(0XFF000000),
+                            fontWeight: FontWeight.w900),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

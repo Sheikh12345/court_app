@@ -384,8 +384,20 @@ class _SellerHomePageState extends State<SellerHomePage> {
 // });
   }
 
+  String notificationLength = '0';
   @override
   void initState() {
+    FirebaseFirestore.instance
+        .collection('notification')
+        .doc('W5pCDxzLw4X053dyjtlIISMljC23')
+        .get()
+        .then((value) {
+          print("result => ${value.get('muhammadkashif1330@gmail.comMsg')}");
+      notificationLength = value.get('muhammadkashif1330@gmail.comMsg') ?? 0;
+    }).whenComplete(() {
+      setState(() {});
+      print('notificationLength => $notificationLength');
+    });
     super.initState();
     getCurrentLocation();
   }
@@ -408,16 +420,24 @@ class _SellerHomePageState extends State<SellerHomePage> {
           ),
           actions: [
             IconButton(
-                icon: Icon(Icons.notifications),
+                icon: Stack(
+                  children: [
+                    Icon(
+                      Icons.notifications,
+                      color:
+                          notificationLength == '0' ? Colors.black : Colors.red,
+                    ),
+                  ],
+                ),
                 onPressed: () {
                   Navigator.pushNamed(context, OnlineUsersScreen.routeName);
                 }),
-            IconButton(
-                icon: Icon(Icons.location_on),
-                onPressed: () {
-                  // print("Location Icon");
-                  getCurrentLocation();
-                }),
+            // IconButton(
+            //     icon: Icon(Icons.location_on),
+            //     onPressed: () {
+            //       // print("Location Icon");
+            //       getCurrentLocation();
+            //     }),
           ],
           backgroundColor: hexColor,
           bottom: TabBar(

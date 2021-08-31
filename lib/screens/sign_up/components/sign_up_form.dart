@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:court_app/utils/size_config.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../../../components/custom_surfix_icon.dart';
 import '../../../components/default_button.dart';
@@ -8,7 +10,6 @@ import '../../../models/verify_email.dart';
 import '../../../widgets/snack_bar.dart';
 
 import 'package:court_app/utils/constants.dart';
-
 
 class SignUpForm extends StatefulWidget {
   @override
@@ -180,9 +181,13 @@ class _SignUpFormState extends State<SignUpForm> {
     try {
       await auth
           .createUserWithEmailAndPassword(email: email, password: password)
-          .then((currentUser) =>
-              Navigator.pushReplacementNamed(context, VerifyEmail.routeName))
-          .catchError((e) {
+          .then((currentUser) {
+        Navigator.pushReplacementNamed(context, VerifyEmail.routeName);
+        FirebaseFirestore.instance
+            .collection('notification')
+            .doc(FirebaseAuth.instance.currentUser.uid)
+            .set({'${email}Msg': 0});
+      }).catchError((e) {
         String message =
             "Invalid Email!\nThis email is already used by another user";
         Snack_Bar.show(context, message);
