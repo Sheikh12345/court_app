@@ -99,7 +99,7 @@ class _SignFormState extends State<SignForm> {
                         })
                     .catchError((e) {
                   addError(error: "Please enter valid email");
-                  // Navigator.pop(context);
+                  Navigator.pop(context);
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
                       content: Text(

@@ -1,3 +1,4 @@
+import 'package:court_app/screens/admin_home/pages/inbox.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
 import 'package:court_app/utils/constants.dart';
@@ -28,6 +29,9 @@ class _AdminBottomNavigationState extends State<AdminBottomNavigation> {
   final List<Widget> _children = [
     // AddHostel(),
     HomePage(),
+    InboxScreenAdmin(
+      topHeading: "Inbox",
+    ),
     UserPage(),
   ];
 
@@ -74,6 +78,13 @@ class _AdminBottomNavigationState extends State<AdminBottomNavigation> {
             ),
             label: 'Home',
           ),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.message,
+                size: 40,
+                color: kPrimaryColor,
+              ),
+              label: 'Profile'),
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.person_rounded,

@@ -49,7 +49,7 @@ class _ChatWithAdminState extends State<ChatWithAdmin> {
 
   @override
   Widget build(BuildContext context) {
-    final receiverEmail = 'hassankhanarif@gmail.com';
+    final receiverEmail = 'hassaankhanarif@gmail.com';
 
     //print("receiver email from chat screen : ${receiverEmail}");
     return Scaffold(
