@@ -14,7 +14,6 @@ class SellerBottomNavigation extends StatefulWidget {
 }
 
 class _SellerBottomNavigationState extends State<SellerBottomNavigation> {
-
   int _currentIndex = 0;
   Color selectedColor = Colors.white30;
   bool showSelectedLabels = false;
@@ -29,7 +28,6 @@ class _SellerBottomNavigationState extends State<SellerBottomNavigation> {
   );
 
   final List<Widget> _children = [
-    // AddHostel(),
     SellerHomePage(),
     OnlineUsersScreen(
       topHeading: "Inbox",
@@ -58,7 +56,7 @@ class _SellerBottomNavigationState extends State<SellerBottomNavigation> {
         ///configuration for SnakeNavigationBar.color
         snakeViewColor: selectedColor,
         selectedItemColor:
-        SnakeShape.circle == SnakeShape.circle ? selectedColor : null,
+            SnakeShape.circle == SnakeShape.circle ? selectedColor : null,
         unselectedItemColor: Colors.blueGrey,
 
         ///configuration for SnakeNavigationBar.gradient
@@ -73,18 +71,35 @@ class _SellerBottomNavigationState extends State<SellerBottomNavigation> {
         onTap: (index) => setState(() => _currentIndex = index),
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home,size: 40, color: kPrimaryColor,), label: 'Home',),
+            icon: Icon(
+              Icons.home,
+              size: 40,
+              color: kPrimaryColor,
+            ),
+            label: 'Home',
+          ),
           BottomNavigationBarItem(
-              icon: Icon(Icons.message,size: 40, color: kPrimaryColor,), label: 'Profile'),
-
+              icon: Icon(
+                Icons.message,
+                size: 40,
+                color: kPrimaryColor,
+              ),
+              label: 'Profile'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded,size: 40, color: kPrimaryColor,), label: 'Profile'),
-
+              icon: Icon(
+                Icons.person_rounded,
+                size: 40,
+                color: kPrimaryColor,
+              ),
+              label: 'Profile'),
         ],
-        selectedLabelStyle: const TextStyle(fontSize: 14,),
-        unselectedLabelStyle: const TextStyle(fontSize: 10,),
+        selectedLabelStyle: const TextStyle(
+          fontSize: 14,
+        ),
+        unselectedLabelStyle: const TextStyle(
+          fontSize: 10,
+        ),
       ),
-
     );
   }
 }

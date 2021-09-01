@@ -1,3 +1,4 @@
+import 'package:court_app/screens/lawyer_home/pages/chat_with_admin.dart';
 import 'package:court_app/utils/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -164,20 +165,26 @@ class _AboutUsState extends State<AboutUs> {
                   ),
                 ),
               ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Contact to admin",
-                        style: TextStyle(
-                            color: Color(0XFF000000),
-                            fontWeight: FontWeight.w900),
-                      ),
-                    ],
+              InkWell(
+                onTap: () {
+                  Navigator.pushReplacement(context,
+                      MaterialPageRoute(builder: (context) => ChatWithAdmin()));
+                },
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Contact to admin",
+                          style: TextStyle(
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w900),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

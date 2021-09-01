@@ -387,17 +387,17 @@ class _SellerHomePageState extends State<SellerHomePage> {
   String notificationLength = '0';
   @override
   void initState() {
-    FirebaseFirestore.instance
-        .collection('notification')
-        .doc('W5pCDxzLw4X053dyjtlIISMljC23')
-        .get()
-        .then((value) {
-          print("result => ${value.get('muhammadkashif1330@gmail.comMsg')}");
-      notificationLength = value.get('muhammadkashif1330@gmail.comMsg') ?? 0;
-    }).whenComplete(() {
-      setState(() {});
-      print('notificationLength => $notificationLength');
-    });
+    // FirebaseFirestore.instance
+    //     .collection('notification')
+    //     .doc('W5pCDxzLw4X053dyjtlIISMljC23')
+    //     .get()
+    //     .then((value) {
+    //       print("result => ${value.get('muhammadkashif1330@gmail.comMsg')}");
+    //   notificationLength = value.get('muhammadkashif1330@gmail.comMsg') ?? 0;
+    // }).whenComplete(() {
+    //   setState(() {});
+    //   print('notificationLength => $notificationLength');
+    // });
     super.initState();
     getCurrentLocation();
   }

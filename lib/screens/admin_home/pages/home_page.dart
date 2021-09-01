@@ -1708,47 +1708,13 @@ class _HomePageState extends State<HomePage> {
         return ListView.builder(
           itemCount: snapshot.data.docs.length,
           itemBuilder: (context, index) {
-            //  print(snapshot.data.docs[index]['status']);
-            // if(snapshot.data.docs[index]['Role']=="Deleted")
-            // {
-            //
-            // }
-            // else
-            //   {
-            //
-            //   }
+
             return customerListCard(snapshot.data.docs[index], index);
           },
         );
       },
     );
   }
-
-  // rejectedOrders() {
-  //   return StreamBuilder(
-  //     stream: FirebaseFirestore.instance
-  //         .collection('Booking Requests')
-  //         .where('user Email',
-  //             isEqualTo: FirebaseAuth.instance.currentUser.email)
-  //         .snapshots(),
-  //     builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
-  //       if (snapshot.connectionState == ConnectionState.waiting)
-  //         return SpinKitRing(lineWidth: 5, color: Colors.blue);
-  //       if (snapshot.data.docs.length == 0)
-  //         return Center(
-  //           child: Text(
-  //             'No Booking Requests',
-  //           ),
-  //         );
-  //       return ListView.builder(
-  //         itemCount: snapshot.data.docs.length,
-  //         itemBuilder: (context, index) {
-  //           return rejectedListCard(snapshot.data.docs[index], index);
-  //         },
-  //       );
-  //     },
-  //   );
-  // }
 
   acceptedOrders() {
     return StreamBuilder(

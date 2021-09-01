@@ -63,6 +63,14 @@ class _LawyerEditProfileState extends State<LawyerEditProfile> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    Future.delayed(Duration(milliseconds: 600), () {
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     SizeConfig().init(context);
     return Scaffold(
@@ -276,10 +284,8 @@ class _LawyerEditProfileState extends State<LawyerEditProfile> {
 
   courtTypeFormField() {
     if (isCourtType != 1) {
-      setState(() {
-        dropdownResultCourtType = storeCourtType;
-        isCourtType = 1;
-      });
+      dropdownResultCourtType = storeCourtType;
+      isCourtType = 1;
     }
     return Container(
       alignment: Alignment.center,

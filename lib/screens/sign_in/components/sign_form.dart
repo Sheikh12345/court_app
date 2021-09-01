@@ -17,7 +17,6 @@ import '../../../screens/admin_home/v_bottom_navigation.dart';
 import '../../../components/default_button.dart';
 import 'package:court_app/utils/constants.dart';
 
-
 class SignForm extends StatefulWidget {
   @override
   _SignFormState createState() => _SignFormState();
@@ -83,9 +82,7 @@ class _SignFormState extends State<SignForm> {
               )
             ],
           ),
-
           FormError(errors: errors),
-
           SizedBox(height: getProportionateScreenHeight(20)),
           DefaultButton(
             text: "Sign in",
@@ -98,10 +95,20 @@ class _SignFormState extends State<SignForm> {
                     .get()
                     .then((value) => {
                           showLoadingDialog(context),
-                          signInUser(email, password, context,value),
+                          signInUser(email, password, context, value),
                         })
                     .catchError((e) {
                   addError(error: "Please enter valid email");
+                  // Navigator.pop(context);
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(
+                        "Email or password is wrong",
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      backgroundColor: Colors.red,
+                    ),
+                  );
                 });
               }
             },
@@ -180,7 +187,7 @@ class _SignFormState extends State<SignForm> {
     );
   }
 
-  Future signInUser(email, password, context,value) async {
+  Future signInUser(email, password, context, value) async {
     _role = value.get('Role');
     print("Role => $_role");
     auth
@@ -199,13 +206,15 @@ class _SignFormState extends State<SignForm> {
           Navigator.of(context).pushAndRemoveUntil(
               MaterialPageRoute(builder: (context) => AdminBottomNavigation()),
               (Route<dynamic> route) => false);
-        }else if (_role == "Deleted") {
+        } else if (_role == "Deleted") {
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => DeletedBottomNavigation()),
+              MaterialPageRoute(
+                  builder: (context) => DeletedBottomNavigation()),
               (Route<dynamic> route) => false);
-        }else if (_role == "Blocked") {
+        } else if (_role == "Blocked") {
           Navigator.of(context).pushAndRemoveUntil(
-              MaterialPageRoute(builder: (context) => BlockedBottomNavigation()),
+              MaterialPageRoute(
+                  builder: (context) => BlockedBottomNavigation()),
               (Route<dynamic> route) => false);
         }
 

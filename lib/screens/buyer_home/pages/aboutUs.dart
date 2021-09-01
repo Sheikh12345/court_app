@@ -1,8 +1,8 @@
+import 'package:court_app/screens/buyer_home/pages/user_profile/chat_with_admin.dart';
 import 'package:court_app/utils/size_config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
-
 
 class AboutUs extends StatefulWidget {
   static String routeName = "/parent_about";
@@ -54,128 +54,150 @@ class _AboutUsState extends State<AboutUs> {
       ),
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal:18.0),
+          padding: const EdgeInsets.symmetric(horizontal: 18.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "About",
-                        style: TextStyle(
-                            color: Color(0XFF000000),
-                            fontWeight: FontWeight.w900),
-                      ),
-                      ListTile(
-                        leading: Icon(
-                          Icons.favorite,
-                        ),
-                        title: Text(
-                          "E - Case by ME",
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "About",
                           style: TextStyle(
-                            color: Color(0XFF8B8B8B),
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w900),
+                        ),
+                        ListTile(
+                          leading: Icon(
+                            Icons.favorite,
+                          ),
+                          title: Text(
+                            "E - Case by ME",
+                            style: TextStyle(
+                              color: Color(0XFF8B8B8B),
+                            ),
                           ),
                         ),
-                      ),
-                      Divider(
-                        indent: 3.0,
-                      ),
-                      ListTile(
-                        leading: Icon(CupertinoIcons.globe),
-                        title: Text(
-                          "https://e-case.com",
-                          style: TextStyle(
-                            color: Color(0XFF8B8B8B),
+                        Divider(
+                          indent: 3.0,
+                        ),
+                        ListTile(
+                          leading: Icon(CupertinoIcons.globe),
+                          title: Text(
+                            "https://e-case.com",
+                            style: TextStyle(
+                              color: Color(0XFF8B8B8B),
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Follow me to stay updated",
-                        style: TextStyle(
-                            color: Color(0XFF000000),
-                            fontWeight: FontWeight.w900),
-                      ),
-                      ListTile(
-                        leading: Icon(
-                         Entypo.facebook
-                        ),
-                        title: Text(
-                          "https://fb.com/e-case",
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Follow me to stay updated",
                           style: TextStyle(
-                            color: Color(0XFF8B8B8B),
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w900),
+                        ),
+                        ListTile(
+                          leading: Icon(Entypo.facebook),
+                          title: Text(
+                            "https://fb.com/e-case",
+                            style: TextStyle(
+                              color: Color(0XFF8B8B8B),
+                            ),
                           ),
                         ),
-                      ),
-                      Divider(
-                        indent: 3.0,
-                      ),
-                      ListTile(
-                        leading: Icon(Entypo.twitter),
-                        title: Text(
-                          "https://t.com/e-case",
-                          style: TextStyle(
-                            color: Color(0XFF8B8B8B),
+                        Divider(
+                          indent: 3.0,
+                        ),
+                        ListTile(
+                          leading: Icon(Entypo.twitter),
+                          title: Text(
+                            "https://t.com/e-case",
+                            style: TextStyle(
+                              color: Color(0XFF8B8B8B),
+                            ),
                           ),
                         ),
-                      ),
-
-                      
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-
-            Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Version",
-                        style: TextStyle(
-                            color: Color(0XFF000000),
-                            fontWeight: FontWeight.w900),
-                      ),
-                      ListTile(
-                        leading: Icon(
-                        Octicons.versions
-                        ),
-                        title: Text(
-                          "V 1.00",
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Version",
                           style: TextStyle(
-                            color: Color(0XFF8B8B8B),
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w900),
+                        ),
+                        ListTile(
+                          leading: Icon(Octicons.versions),
+                          title: Text(
+                            "V 1.00",
+                            style: TextStyle(
+                              color: Color(0XFF8B8B8B),
+                            ),
                           ),
                         ),
-                      ),
-                    
-
-                      
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-              ),
-
-            ] 
-      
-    ),),),);
+                Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Chat with admin",
+                          style: TextStyle(
+                              color: Color(0XFF000000),
+                              fontWeight: FontWeight.w900),
+                        ),
+                        ListTile(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ChatWithAdmin()));
+                          },
+                          leading: Icon(Octicons.mail),
+                          title: Text(
+                            "you will get reply in 24 hours",
+                            style: TextStyle(
+                              color: Color(0XFF8B8B8B),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ]),
+        ),
+      ),
+    );
   }
 }

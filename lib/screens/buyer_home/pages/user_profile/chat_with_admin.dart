@@ -4,21 +4,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:court_app/utils/constants.dart';
 
-final _firestore = FirebaseFirestore.instance;
+final _fireStore = FirebaseFirestore.instance;
 User loggedInUser = FirebaseAuth.instance.currentUser;
 
-class ChatScreen extends StatefulWidget {
+class ChatWithAdmin extends StatefulWidget {
   static const String routeName = 'chat_screen';
 
-  ChatScreen({this.receiverEmail});
+  ChatWithAdmin({this.receiverEmail});
 
   final String receiverEmail;
 
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _ChatWithAdminState createState() => _ChatWithAdminState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatWithAdminState extends State<ChatWithAdmin> {
   final messageTextController = TextEditingController();
   final _auth = FirebaseAuth.instance;
 
@@ -49,7 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final receiverEmail = ModalRoute.of(context).settings.arguments;
+    final receiverEmail = 'hassankhanarif@gmail.com';
 
     //print("receiver email from chat screen : ${receiverEmail}");
     return Scaffold(
@@ -86,7 +86,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       //print(receiverEmail.toString());
                       //Implement send functionality.
                       messageTextController.clear();
-                      _firestore
+                      _fireStore
                           .collection('messages')
                           //sender
                           .doc(loggedInUser.email)
@@ -101,7 +101,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         },
                       );
 
-                      _firestore
+                      _fireStore
                           .collection('messages')
                           //sender
                           .doc(receiverEmail)
@@ -116,7 +116,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         },
                       );
 
-                      _firestore
+                      _fireStore
                           .collection('notifications')
                           //sender
                           .doc(receiverEmail)
@@ -125,6 +125,9 @@ class _ChatScreenState extends State<ChatScreen> {
                           .doc(loggedInUser.email)
                           .set(
                         {
+                          // 'text': messageText.toString(),
+                          // 'sender': loggedInUser.email.toString(),
+                          // 'receiver': receiverEmail,
                           'email': loggedInUser.email.toString(),
                           'date': DateTime.now(),
                         },
@@ -153,7 +156,7 @@ class MessageStream extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-        stream: _firestore
+        stream: _fireStore
             .collection('messages')
             .doc(FirebaseAuth.instance.currentUser.email)
             .collection(receiver)

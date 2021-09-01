@@ -18,7 +18,6 @@ import 'locationModel.dart';
 import 'package:geolocator_platform_interface/geolocator_platform_interface.dart';
 import 'distance_model.dart';
 
-
 // import 'package:vector_math/vector_math_geometry.dart';
 
 class HomePage extends StatefulWidget {
@@ -387,20 +386,17 @@ class _HomePageState extends State<HomePage> {
                         padding: EdgeInsets.symmetric(horizontal: 5),
                       ),
 
-                   
-        
-          //print(" its from navigation button ${sender}");
-          
-       
-              
-                    MaterialButton(
+                      //print(" its from navigation button ${sender}");
+
+                      MaterialButton(
                         onPressed: () {
-                         Navigator.pushNamed(context, ChatScreen.routeName, arguments:jsnapshot['Email']);
+                          Navigator.pushNamed(context, ChatScreen.routeName,
+                              arguments: jsnapshot['Email']);
                         },
                         color: kPrimaryColor,
                         child: Text('Chat', style: txtLight),
                       ),
-                       Padding(
+                      Padding(
                         padding: EdgeInsets.symmetric(horizontal: 5),
                       ),
                       MaterialButton(
@@ -643,7 +639,7 @@ class _HomePageState extends State<HomePage> {
           }).then((value) {
             double myvar;
             FirebaseFirestore.instance
-                .collection("Lawyer")
+                .collection("Lawyers")
                 .doc(snapshot["Lawyer Email"])
                 .get()
                 .then((value) {
@@ -656,6 +652,7 @@ class _HomePageState extends State<HomePage> {
                   .doc(snapshot["Lawyer Email"])
                   .update({"overAllRating": myvar.toString()});
             });
+
             Fluttertoast.showToast(
                 msg: "5 star rating added",
                 toastLength: Toast.LENGTH_SHORT,
@@ -905,7 +902,6 @@ class _HomePageState extends State<HomePage> {
         .then((value) {
       var maps = value.docs;
       maps.forEach((element) {
-       
         listLawyers.add(Lawyer(
           email: element.data()["Email"],
           bLatitude: element.data()["BLatitude"],
@@ -990,7 +986,6 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         SizedBox(height: 25.0),
                         Image.asset("assets/images/lawyer_4.jpg"),
-                        
                         Positioned(
                           // alignment: Alignment.center,
                           child: ColorFiltered(
